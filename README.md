@@ -1,1 +1,1 @@
-Run in Code Composer Studio
+Made for Code Composer Studio
