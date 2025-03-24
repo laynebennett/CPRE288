@@ -14,14 +14,14 @@
 #include "movement.h"
 
 
-int lcd_rotatingBanner(int i){
+int lcd_rotatingBanner(int i){ //creates rotating banner display on 20-wide lcd display on the CyBOT
 
-    char str[] = "                    ;)                    ";
+    char str[] = "                    :)                    "; //using smiley face as test case with white space padding
 
 
 
     int j;
-    for(j=0;j<20;j++){
+    for(j=0;j<20;j++){ //shift string to left in increments of 1
 
         lcd_putc(str[j+i]);
     }
@@ -30,7 +30,7 @@ int lcd_rotatingBanner(int i){
 
     i++;
 
-    if(str[j+i+1]=='\0'){
+    if(str[j+i+1]=='\0'){ //if at the end of the string, start at beginning
         i=0;
     }
 
@@ -84,16 +84,7 @@ int main (void) {
 
 
     //BUMP DETECTION
-    move_forward_bump(sensor_data, 2000);
-
-	// Print "Hello, world" on the LCD
-	//lcd_printf("Hello, world");
-
-	//lcd_puts("Hello, world"); // Replace lcd_printf with lcd_puts
-        // step through in debug mode and explain to TA how it works
-    
-	// NOTE: It is recommended that you use only lcd_init(), lcd_printf(), lcd_putc, and lcd_puts from lcd.h.
-       // NOTE: For time functions, see Timer.h
+    move_forward_bump(sensor_data, 2000); //detects bump and moves around objects to the right, moving forward 2 meters total
 
 	/*int i = 0;
 
