@@ -127,7 +127,7 @@ int main (void) {
             sprintf(puttyString, "\n");
             printWholeString(puttyString);
 
-            for(q=1;q<=objCount;q++){
+            for(q=1;q<=objCount;q++){ //scan each object and calculate the distance, taking an average from 5 readings
                 avgObjDist = 0;
                 for(i = 0; i < 5; i++) {
                     cyBOT_Scan(objAngle[q]+(objWidth[q]/2), &scan);
@@ -138,16 +138,16 @@ int main (void) {
                 avgObjDist /= 5;
 
 
-                sprintf(puttyString, "Object %i: Angle = %i, Distance = %f, Width = %i\n", q, objAngle[q]+(objWidth[q]/2), avgObjDist, objWidth[q]);
+                sprintf(puttyString, "Object %i: Angle = %i, Distance = %f, Width = %i\n", q, objAngle[q]+(objWidth[q]/2), avgObjDist, objWidth[q]); //prints all object information to putty
                 printWholeString(puttyString);
 
-                if(objWidth[q]<minWidth){
+                if(objWidth[q]<minWidth){ //find smallest width object
                     minWidth = objWidth[q];
                     minAngle = objAngle[q]+(((double)objWidth[q])/2.0);
                 }
 
             }
-            cyBOT_Scan(minAngle-(minAngle-90)*.2, &scan);
+            cyBOT_Scan(minAngle-(minAngle-90)*.2, &scan); //point to smallest width object
 		objDist = scan.sound_dist*.9;
 /*
 		double z = 10; //CHANGE
