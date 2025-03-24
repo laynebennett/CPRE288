@@ -43,26 +43,16 @@ void uart_init(void){
   UART1_CTL_R &= ~0x1;
 
   //set baud rate
-  //note: to take effect, there must be a write to LCRH after these assignments
   UART1_IBRD_R = iBRD;
   UART1_FBRD_R = fBRD;
 
-  //set frame, 8 data bits, 1 stop bit, no parity, no FIFO
-  //note: this write to LCRH must be after the BRD assignments
   UART1_LCRH_R = 0b01100000;
 
   //use system clock as source
-  //note from the datasheet UARTCCC register description:
-  //field is 0 (system clock) by default on reset
-  //Good to be explicit in your code
   UART1_CC_R = 0x0;
 
   //re-enable UART1 and also enable RX, TX (three bits)
-  //note from the datasheet UARTCTL register description:
   //RX and TX are enabled by default on reset
-  //Good to be explicit in your code
-  //Be careful to not clear RX and TX enable bits
-  //(either preserve if already set or set them)
   UART1_CTL_R |= 0x1;
 
 }
@@ -79,7 +69,7 @@ char uart_receive(void){
 }
 
 void uart_sendStr(const char *data){
-	//TODO for reference see lcd_puts from lcd.c file
+
     while(*data != '\0')
         {
             lcd_putc(*data);
