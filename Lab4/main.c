@@ -34,11 +34,11 @@ int main (void) {
 
     oi_init(sensor_data);
 
-    button_init();
+    button_init(); //initializes button GPIOs, found in button.c
 
     timer_init(); // Initialize Timer, needed before any LCD screen functions can be called
                   // and enables time functions (e.g. timer_waitMillis)
-    lcd_init();   // Initialize the LCD screen.  This also clears the screen.
+    lcd_init();   // Initialize the LCD screen and also clears the screen.
 
     cyBot_uart_init();
 
@@ -63,14 +63,14 @@ int main (void) {
 }
 
 
-void sendString(char c, char puttyString[]){
+void sendString(char c, char puttyString[]){ //adds char to end of string
 
     sprintf(puttyString, "%s%c", puttyString, c);
     lcd_printf("Got %s\n", puttyString);
 
 }
 
-void printWholeString(char puttyString[]){
+void printWholeString(char puttyString[]){ //prints to putty
     int i;
     for(i=0;i<strlen(puttyString);i++){
         printString(puttyString[i]);
@@ -78,11 +78,11 @@ void printWholeString(char puttyString[]){
 
 }
 
-void printString(char c){
+void printString(char c){ //alternative to sendByte
     cyBot_sendByte(c);
 }
 
-int lcd_rotatingBanner(int i){
+int lcd_rotatingBanner(int i){ //ignore for this lab, creates rotating banner display
 
     char str[] = "                    ;)                    ";
 
